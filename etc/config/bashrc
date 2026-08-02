@@ -1,0 +1,13 @@
+export OPENCODE_PATH=$HOME/.opencode
+export PATH=$PATH:$HOME/.local/bin:$OPENCODE_PATH/bin
+
+parse_git_branch() {
+  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
+}
+
+prompt_color='\[\033[;32m\]'
+info_color='\[\033[1;34m\]'
+prompt_symbol=㉿
+PS1=$prompt_color'┌──${debian_chroot:+($debian_chroot)──}${VIRTUAL_ENV:+(\[\033[0;1m\]$(basename $VIRTUAL_ENV)'$prompt_color')}('$info_color'\u'$prompt_symbol'\h'$prompt_color')-[\[\033[0;1m\]\w'$prompt_color']\[\033[00m\]\[\033[01;33m\] $(parse_git_branch " (%s)")\[\033[00m\]\n'$prompt_color'└─'$info_color'\$\[\033[0m\] '
+
+alias ll='ls -alF'
