@@ -37,13 +37,13 @@ Notes:
 If this project is published with GitHub Pages, `start.sh` is expected to be available at:
 
 ```text
-https://<project-name-url>/start.sh
+https://jscoobyced.github.io/jsc-opencode-dev/start.sh
 ```
 
 Download, make executable, and run:
 
 ```bash
-curl -fsSL https://<project-name-url>/start.sh -o start.sh
+curl -fsSL https://jscoobyced.github.io/jsc-opencode-dev/start.sh -o start.sh
 chmod +x start.sh
 ./start.sh
 ```
