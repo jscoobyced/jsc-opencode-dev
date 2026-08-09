@@ -34,7 +34,7 @@ Notes:
 
 ## Quick Start
 
-If this project is published with GitHub Pages, `opencode.sh` is expected to be available at:
+If this project is published with GitHub Pages, [opencode.sh](https://jscoobyced.github.io/jsc-opencode-dev/opencode.sh) is expected to be available at:
 
 ```text
 https://jscoobyced.github.io/jsc-opencode-dev/opencode.sh
