@@ -33,7 +33,7 @@ if [ ! -f docker-compose.yml ]; then
   cat <<EOF > docker-compose.yml
 services:
   jsc-opencode-dev:
-    image: jscdroiddev:jsc-opencode-dev
+    image: jscdroiddev/jsc-opencode-dev:latest
     container_name: jsc-opencode-dev
     hostname: jsc-opencode-dev
     stdin_open: true

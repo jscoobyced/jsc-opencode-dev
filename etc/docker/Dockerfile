@@ -2,8 +2,13 @@ FROM node:26.5.1-alpine
 
 # Update package repositories and install necessary packages
 RUN apk update
-RUN apk add --no-cache git curl wget bash
-RUN apk add --no-cache yarn tzdata
+# Install essential packages
+RUN apk add --no-cache git curl wget bash tzdata sudo
+# Install additional packages for development
+RUN apk add --no-cache yarn postgresql-client \
+    mysql-client sqlite sqlite-dev build-base \
+    zlib-dev libffi-dev openssl-dev \
+    mandoc man-pages
 RUN rm -rf /var/cache/apk/*
 
 ARG OPENCODE_NAME="OpenCode User"
@@ -19,6 +24,9 @@ RUN cp /usr/share/zoneinfo/$TZ /etc/localtime && \
 COPY etc/config/bashrc /etc/bash/bashrc
 RUN chmod u+x /etc/bash/bashrc
 RUN chown node:node /etc/bash/bashrc
+
+# Enable sudo for the node user
+RUN echo "node ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 
 USER node
 
