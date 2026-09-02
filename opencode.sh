@@ -5,6 +5,7 @@ if [ ! -f ./opencode.jsonc ]; then
 {
   "\$schema": "https://opencode.ai/config.json",
   "autoupdate": true,
+  "plugin": ["@dietrichgebert/ponytail"],
   "enabled_providers": ["llama.cpp"],
   "provider": {
     "llama.cpp": {
