@@ -8,8 +8,13 @@ RUN apk add --no-cache git curl wget bash tzdata sudo
 RUN apk add --no-cache yarn postgresql-client \
     mysql-client sqlite sqlite-dev build-base \
     zlib-dev libffi-dev openssl-dev \
-    mandoc man-pages
+    mandoc man-pages ripgrep \
+    imagemagick potrace rsvg-convert \
+    python3 py3-pip
 RUN rm -rf /var/cache/apk/*
+
+RUN npm install -g npm@latest
+RUN npm install -g pnpm@latest --allow-scripts=pnpm
 
 ARG OPENCODE_NAME="OpenCode User"
 ARG OPENCODE_EMAIL="jsc-opencode-dev@example.com"

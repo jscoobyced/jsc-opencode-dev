@@ -10,13 +10,16 @@ ISPUSH=${ISPUSH:-false}
 echo "🚀 Starting build process..."
 echo "⚙️  Building project..."
 
-docker build -t ${DOCKERUSER}/${DOCKERIMAGE}:latest -t ${DOCKERUSER}/${DOCKERIMAGE}:${DOCKERTAG} -f ./etc/docker/Dockerfile .
-
-echo "✅ Build process completed."
+ALSO_PUSH=""
 
 if [ "$ISPUSH" = "true" ]; then
-    echo "📦 Pushing Docker image..."
-    docker push ${DOCKERUSER}/${DOCKERIMAGE}:latest
-    docker push ${DOCKERUSER}/${DOCKERIMAGE}:${DOCKERTAG}
+    ALSO_PUSH="--push "
+    echo "📦 Will also be pushing Docker image..."
+fi
+
+docker buildx build --platform linux/amd64,linux/arm64 $ALSO_PUSH-t ${DOCKERUSER}/${DOCKERIMAGE}:latest -t ${DOCKERUSER}/${DOCKERIMAGE}:${DOCKERTAG} -f ./etc/docker/Dockerfile .
+
+echo "✅ Build process completed."
+if [ "$ISPUSH" = "true" ]; then
     echo "✅ Docker image pushed successfully."
 fi
