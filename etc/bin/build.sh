@@ -13,11 +13,11 @@ echo "⚙️  Building project..."
 ALSO_PUSH=""
 
 if [ "$ISPUSH" = "true" ]; then
-    ALSO_PUSH="--push "
+    ALSO_PUSH=" --push"
     echo "📦 Will also be pushing Docker image..."
 fi
 
-docker buildx build --platform linux/amd64,linux/arm64 $ALSO_PUSH-t ${DOCKERUSER}/${DOCKERIMAGE}:latest -t ${DOCKERUSER}/${DOCKERIMAGE}:${DOCKERTAG} -f ./etc/docker/Dockerfile .
+docker buildx build --platform linux/amd64,linux/arm64$ALSO_PUSH -t ${DOCKERUSER}/${DOCKERIMAGE}:latest -t ${DOCKERUSER}/${DOCKERIMAGE}:${DOCKERTAG} -f ./etc/docker/Dockerfile .
 
 echo "✅ Build process completed."
 if [ "$ISPUSH" = "true" ]; then

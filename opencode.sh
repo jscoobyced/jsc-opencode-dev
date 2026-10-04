@@ -46,6 +46,6 @@ EOF
   echo "Created default docker-compose.yml configuration file."
 fi
 
-docker compose up -d
+docker compose up jsc-opencode-dev -d
 docker compose exec jsc-opencode-dev bash
 docker compose down
