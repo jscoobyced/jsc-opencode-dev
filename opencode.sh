@@ -37,15 +37,23 @@ services:
     image: jscdroiddev/jsc-opencode-dev:latest
     container_name: jsc-opencode-dev
     hostname: jsc-opencode-dev
+    network_mode: "host"
     stdin_open: true
     tty: true
+    environment:
+      GITHUB_TOKEN: ${GH_TOKEN:-default}
     volumes:
-      - ./project:/home/node/workspace
+      - ./:/home/node/workspace
       - ./opencode.jsonc:/home/node/.config/opencode/opencode.jsonc
 EOF
   echo "Created default docker-compose.yml configuration file."
 fi
 
-docker compose up jsc-opencode-dev -d
+docker pull jscdroiddev/jsc-opencode-dev:latest
+if [ -f .env ]; then
+  docker compose --env-file .env up -d
+else
+  docker compose up -d
+fi
 docker compose exec jsc-opencode-dev bash
 docker compose down
