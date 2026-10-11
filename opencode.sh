@@ -49,6 +49,10 @@ EOF
   echo "Created default docker-compose.yml configuration file."
 fi
 
+if [ -f opencode.sh ]; then
+  chmod u+x opencode.sh
+fi
+
 docker pull jscdroiddev/jsc-opencode-dev:latest
 if [ -f .env ]; then
   docker compose --env-file .env up -d
